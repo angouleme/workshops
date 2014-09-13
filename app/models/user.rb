@@ -4,6 +4,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attr_accessor :firstname, :lastname
+
   has_many :reviews
   has_many :products
+
+  validates_presence_of :firstname
+  validates_presence_of :lastname
+
+  def admin?
+  end
+
 end
