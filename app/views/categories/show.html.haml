@@ -1,20 +1,26 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = category.name
-
-%p
-  - category.products.each do |product|
-    = product.title
-
--if user_signed_in?
-  %p
-    %h3 New product
-  = render 'products/form'
-
-
--if user_signed_in? and is_admin?
-  = link_to 'Edit', edit_category_path(category)
-  \|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+.panel.panel-default
+  .panel-body
+    .col-md-6
+      .panel.panel-default
+        .panel-heading
+          %h2
+            Category:
+            = category.name
+        .panel-body
+          %p Products in this category: 
+          %ul
+            - category.products.each do |product|
+              %li
+                = link_to(product.title, category_product_path(category, product)) 
+    -if user_signed_in?
+      .col-md-6
+        .panel.panel-default
+          .panel-heading
+            %h3 New product
+          .panel-body
+            = render 'products/form'
+  .panel-footer 
+    -if user_signed_in? and current_user.admin?
+      = link_to 'Edit', edit_category_path(category)
+      \|
+      = link_to 'Back', categories_path, class: 'btn btn-primary'

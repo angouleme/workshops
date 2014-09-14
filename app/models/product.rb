@@ -15,6 +15,7 @@ class Product < ActiveRecord::Base
     av += r.rating
    end
    a = av.to_f / reviews.size
+   a.round(2)
   end
 
 end

@@ -9,10 +9,14 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :products
 
-  validates_presence_of :firstname
-  validates_presence_of :lastname
+  #validates_presence_of :firstname
+  #validates_presence_of :lastname
 
-  def admin?
+  def is_admin? 
+  end
+
+  def is_owner?(product)
+   product.user == self
   end
 
 end

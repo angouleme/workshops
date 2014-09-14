@@ -1,0 +1,33 @@
+.col-md-5
+  .panel.panel-default
+    .panel-heading
+      %h2 User's profile
+    .panel-body
+      %p
+        %b Email: 
+        =@user.email
+      .panel-body
+        <p>User's latest reviews</p>
+        %table.table
+          %tr
+            %th Review 
+            %th Rating
+            %th Published
+            - @reviews.each do |review|
+              %tr
+                %td= review.content
+                %td= review.rating
+                %td= review.created_at.strftime('%d-%m-%y')  
+        <p>User's products</p>
+        %table.table
+          %tr
+            %th Title
+            %th Description
+            %th Price
+            - @products.each do |product|
+              %tr
+                %td= product.title
+                %td= product.description
+                %td= product.price
+                  
+    .panel-footer
