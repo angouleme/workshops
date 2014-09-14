@@ -8,10 +8,13 @@
   - category.products.each do |product|
     = product.title
 
-%p
-  %h3 New product
+-if user_signed_in?
+  %p
+    %h3 New product
   = render 'products/form'
 
-= link_to 'Edit', edit_category_path(category)
-\|
+
+-if user_signed_in? and is_admin?
+  = link_to 'Edit', edit_category_path(category)
+  \|
 = link_to 'Back', categories_path, class: 'btn btn-primary'

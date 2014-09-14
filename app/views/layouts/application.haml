@@ -12,9 +12,18 @@
     %nav.navbar.navbar-default
       .container-fluid
         .navbar-header
-          %span.navbar-brand Netguru Kraków Workshops 2014
+          %span.navbar-brand 
+            = link_to('Netguru Kraków Workshops 2014', root_path)
         %p.navbar-text.navbar-right
-          Links should go here
+          %ul.nav.navbar-nav.navbar-right
+            -if user_signed_in?
+              %li 
+                = link_to('logout', destroy_user_session_path, :method => :delete)
+            - else
+              %li 
+                = link_to('signup', new_user_registration_path)
+              %li
+                = link_to('login', new_user_session_path)
     .container-fluid
       .row
         .col-lg-12
